@@ -1,6 +1,6 @@
-const WorkerReviews = require('../worker-data-base')
+const WorkerDataBase = require('../worker-data-base')
 
-module.exports = class WorkerTableUser extends WorkerReviews{
+module.exports = class WorkerReviews extends WorkerDataBase{
     #name = 'reviews'
     constructor(res, req){
         super()

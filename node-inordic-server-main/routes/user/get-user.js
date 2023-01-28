@@ -1,4 +1,4 @@
-const WorkerTableUser = require('../../services/worker-tables/index')
+const WorkerTableUser = require('../../services/worker-tables/users')
 
 /**
  * Маршрут для получения оного пользователя:
@@ -12,7 +12,6 @@ const WorkerTableUser = require('../../services/worker-tables/index')
  module.exports = (app) => app.get('/users/get/:id', function(req, res){
     //Получить данные из параметра 
     const {id} = req.params
-    console.log('id пользователя: ', id)
     const workerTableUser = new WorkerTableUser(res, req)
     workerTableUser.get(id);
  })

@@ -1,3 +1,5 @@
+const WorkerTableGood = require('../../services/worker-tables/goods')
+
 //Добавляем плагин multer, для работы с формами и файлами в node.js
 const multer = require('multer')
 //Настраивае, куда будем сохранять файл
@@ -6,7 +8,7 @@ const uploadFromForm = multer({dest: 'uploads/'})
 const fileFromForm = uploadFromForm.single('MYFILE')
 const uuid = require("uuid")
 
-module.exports = (app, connect) => {
+module.exports = (app) => {
     /**
      * Маршрут для добавления оного товара:
      * Автор: Румянцев Александр
@@ -19,21 +21,17 @@ module.exports = (app, connect) => {
         //Тут не можем чистать данных с формы без дополнительных плагинов
         //Установил плагин multer, для чтения формы и передачи файлов
         //Получим данные с формы
-        const id = uuid.v4();
-        const title = req.body.TITLE;
-        const discr = req.body.DISCR;
-        const price = req.body.PRICE;
-        const img = req.body.IMG;
-        const count = req.body.COUNT;
-        
-        //Сгенерировать запрос для добавления товара в БД
-        //INSERT - добавление в БД
-        const sql = 'INSERT INTO `goods` (`ID`, `TITLE`, `DISCR`, `PRICE`, `IMG`, `COUNT`) VALUES ("'+ id +'", "'+ title +'", "'+ discr +'", "'+ price +'", "'+ img +'", "'+ count +'")';
-  
-        //Стандартная конструкция для отправки запроса в базу
-        connect.query(sql, (err, result) => {
-            err ? res.send(err) : res.send(JSON.stringify(result))
-        })
+        const data = {
+            "ID": uuid.v4(),
+            "TITLE": req.body.TITLE,
+            "DISCR": req.body.DISCR,
+            "PRICE": req.body.PRICE,
+            "IMG": req.body.IMG,
+            "COUNT": req.body.COUNT,
+        }
+
+        const workerTableGood = new WorkerTableGood(res, req);
+        workerTableGood.add(data)
     })
 
     /**
@@ -45,7 +43,7 @@ module.exports = (app, connect) => {
      * Пример работы с запросом: 
      * Ввести в адресную строку - http://localhost:3000/form_add_item
      */
-    app.get('/form_add_item', function(req, res){
+    app.get('/goods/form/add', function(req, res){
         res.send(
             `
                 <h1>

@@ -6,9 +6,9 @@ const uploadFromForm = multer({dest: 'uploads/'})
 const fileFromForm = uploadFromForm.single('MYFILE')
 const uuid = require("uuid")
 
-const WorkerTableUser = require('../../services/worker-tables/index')
+const WorkerTableUser = require('../../services/worker-tables/users')
 
-module.exports = (app, connect) => {
+module.exports = (app) => {
 
     /**
      * Маршрут для добавления оного пользователя:
@@ -46,7 +46,7 @@ module.exports = (app, connect) => {
      * Пример работы с запросом: 
      * Ввести в адресную строку - http://localhost:3000/form_add_user
      */
-     app.get('/form_add_user', function(req, res){
+     app.get('/users/form/add', function(req, res){
         res.send(
             `
                 <h1>

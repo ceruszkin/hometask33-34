@@ -1,6 +1,6 @@
-const WorkerTableUser = require('../../services/worker-tables/index')
+const WorkerTableUser = require('../../services/worker-tables/users')
 
-module.exports = (app, connect) => {
+module.exports = (app) => {
 
     app.get('/users/get', function(req, res){
         console.log(WorkerTableUser)

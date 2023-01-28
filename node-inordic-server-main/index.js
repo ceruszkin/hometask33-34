@@ -4,7 +4,6 @@
 //Импортируем плагины
 const express = require("express");
 const mysql = require("mysql")
-
 //создадим подключение к базе данных
 // 1 - Создадим функцию-конфигурацию для подключения
 function config () {
@@ -20,8 +19,7 @@ function config () {
       timeout         : 60 * 60 * 1000
     }
 }
-// 2 - Создадим подключение
-const connect = mysql.createPool(config())
+
 //Инициализируем приложение express
 const app = express();
 
@@ -30,10 +28,7 @@ const app = express();
 app.get(
     '/',
     function(request, response){
-        //Посылаем ответ от сервера
-        ///console.log(request.query.test)
-        //Декомпозиция объекта
-        const {test, name} = request.query
+        
         response.send(
             `
                 <h1>
@@ -59,12 +54,12 @@ app.get(
                         </a>
                     </li>
                     <li>
-                        <a href='/form_add_item'>
+                        <a href='/goods/form/add'>
                             4 - Маршрут для добавления товара.
                         </a>
                     </li>
                     <li>
-                        <a href='/form_edit_item'>
+                        <a href='/goods/form/edit'>
                             5 - Маршрут для редактирования товара.
                         </a>
                     </li>
@@ -74,7 +69,7 @@ app.get(
                 </h2>
                 <ul>
                     <li>
-                        <a href='/users/add'>
+                        <a href='/users/form/add'>
                             1 - Маршрут для добавления пользователя.
                         </a>
                     </li>
@@ -88,6 +83,56 @@ app.get(
                             3 - Маршрут для просмотра одного пользователя.
                         </a>
                     </li>
+                    <li>
+                        <a href='/users/form/edit'>
+                            4 - Маршрут для редактирования пользователя.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/users/del/:id'>
+                            5 - Маршрут для удаления пользователя.
+                        </a>
+                    </li>
+                </ul>
+                <h2>
+                    Почта
+                </h2>
+                <ul>
+                    <li>
+                        <a href='/mail/form'>
+                            Маршрут для отправки письма.
+                        </a>
+                    </li>
+                </ul>
+                <h2>
+                    Отзывы
+                </h2>
+                <ul>
+                    <li>
+                        <a href='/reviews/get'>
+                            1 - Маршрут для получения всех отзывов.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/reviews/get/:id'>
+                            2 - Маршрут для получения одного отзыва.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/reviews/form/add'>
+                            3 - Маршрут для добавления отзыва.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/reviews/form/edit'>
+                            4 - Маршрут для редактирования отзыва.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/reviews/del/:id'>
+                            5 - Маршрут для удаления отзыва.
+                        </a>
+                    </li>
                 </ul>
             `
         )
@@ -95,16 +140,27 @@ app.get(
 )
 
 //Распределяем роутеры по файлам
-require('./routes/good/get-all-good.js')(app, connect)
-require('./routes/good/get-item.js')(app, connect)
-require('./routes/good/del-item.js')(app, connect)
-require('./routes/good/add-item.js')(app, connect)
-require('./routes/good/edit-item.js')(app, connect)
+require('./routes/good/get-all-good.js')(app)
+require('./routes/good/get-item.js')(app)
+require('./routes/good/del-item.js')(app)
+require('./routes/good/add-item.js')(app)
+require('./routes/good/edit-item.js')(app)
 
 //Роуты для пользователей
-require('./routes/user/add-user.js')(app, connect)
-require('./routes/user/get-all-users')(app, connect)
-require('./routes/user/get-user')(app, connect)
+require('./routes/user/add-user.js')(app)
+require('./routes/user/get-all-users')(app)
+require('./routes/user/get-user')(app)
+require('./routes/user/edit-user')(app)
+
+//Роуты для отзывов
+require('./routes/review/get-all-reviews')(app)
+require('./routes/review/get-review')(app)
+require('./routes/review/add-review')(app)
+require('./routes/review/edit-review')(app)
+
+//Роуты для писем
+require('./routes/mail')(app)
+
 
 //Начинаем прослушивать определенный порт
 app.listen(3000);
