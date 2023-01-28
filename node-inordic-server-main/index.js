@@ -39,30 +39,53 @@ app.get(
                 <h1>
                     Корневой маршрут / Разводная страница
                 </h1>
+                <h2>
+                    Товары
+                </h2>
                 <ul> 
                     <li>
-                        <a href='/get_all_good'>
-                            2 - Маршрут для получения всех товаров
+                        <a href='/goods/add'>
+                            1 - Маршрут для получения всех товаров.
                         </a>
                     </li>
                     <li>
                         <a href='/get_item?id=1'>
-                            3 - Маршрут для получения всех товаров
+                            2 - Маршрут для получения всех товаров.
                         </a>
                     </li>
                     <li>
                         <a href='/del_item?id=1'>
-                            3 - Маршрут для удаления товара
+                            3 - Маршрут для удаления товара.
                         </a>
                     </li>
                     <li>
                         <a href='/form_add_item'>
-                            4 - Маршрут для добавления товара
+                            4 - Маршрут для добавления товара.
                         </a>
                     </li>
                     <li>
                         <a href='/form_edit_item'>
-                            5 - Маршрут для редактирования товара
+                            5 - Маршрут для редактирования товара.
+                        </a>
+                    </li>
+                </ul>
+                <h2>
+                    Пользователи
+                </h2>
+                <ul>
+                    <li>
+                        <a href='/users/add'>
+                            1 - Маршрут для добавления пользователя.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/users/get'>
+                            2 - Маршрут для просмотра всех пользователей.
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/users/get/:id'>
+                            3 - Маршрут для просмотра одного пользователя.
                         </a>
                     </li>
                 </ul>
@@ -72,11 +95,16 @@ app.get(
 )
 
 //Распределяем роутеры по файлам
-require('./routes/get-all-good.js')(app, connect)
-require('./routes/get-item.js')(app, connect)
-require('./routes/del-item.js')(app, connect)
-require('./routes/add-item.js')(app, connect)
-require('./routes/edit-item.js')(app, connect)
+require('./routes/good/get-all-good.js')(app, connect)
+require('./routes/good/get-item.js')(app, connect)
+require('./routes/good/del-item.js')(app, connect)
+require('./routes/good/add-item.js')(app, connect)
+require('./routes/good/edit-item.js')(app, connect)
+
+//Роуты для пользователей
+require('./routes/user/add-user.js')(app, connect)
+require('./routes/user/get-all-users')(app, connect)
+require('./routes/user/get-user')(app, connect)
 
 //Начинаем прослушивать определенный порт
 app.listen(3000);

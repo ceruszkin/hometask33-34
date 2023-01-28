@@ -1,3 +1,10 @@
+//Добавляем плагин multer, для работы с формами и файлами в node.js
+const multer = require('multer')
+//Настраивае, куда будем сохранять файл
+const uploadFromForm = multer({dest: 'uploads/'})
+//Устанавливаем название файла на форме
+const fileFromForm = uploadFromForm.single('MYFILE')
+
 module.exports = (app, connect) => {
     /**
      * Маршрут для редактирования оного товара:
@@ -7,11 +14,23 @@ module.exports = (app, connect) => {
      * Метод: POST
      * Пример работы с запросом:
     */
-    app.post('/edit_item', function(req, res){
+    app.post('/edit_item', fileFromForm, function(req, res){
         //Тут не можем чистать данных с формы без дополнительных плагинов
         console.log(req)
         console.log(req)
-        res.send('Заглушка для редактирования товара')
+
+        const id = req.body.ID;
+        const title = req.body.TITLE;
+        const discr = req.body.DISCR;
+        const price = req.body.PRICE;
+        const img = req.body.IMG;
+        const count = req.body.COUNT;
+
+        const sql = "UPDATE `goods` SET `TITLE`='"+title+"',`DISCR`='"+discr+"',`PRICE`='"+price+"',`IMG`='"+img+"',`COUNT`='"+count+"' WHERE `ID`='"+id+"'";
+
+        connect.query(sql, (err, result) => {
+            err ? res.send(err) : res.send(JSON.stringify(result))
+        })
     })
     /**
      * Маршрут для редактирования оного товара:

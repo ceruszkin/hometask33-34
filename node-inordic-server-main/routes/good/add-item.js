@@ -15,7 +15,7 @@ module.exports = (app, connect) => {
      * Метод: POST
      * Пример работы с запросом:
      */
-    app.post('/add_item', fileFromForm, function(req, res){
+    app.post('/goods/add', fileFromForm, function(req, res){
         //Тут не можем чистать данных с формы без дополнительных плагинов
         //Установил плагин multer, для чтения формы и передачи файлов
         //Получим данные с формы
@@ -51,7 +51,7 @@ module.exports = (app, connect) => {
                 <h1>
                 Тестовая форма, для маршрута - add_item
                 </h1>
-                <form enctype="multipart/form-data"  action='/add_item' method='post'>
+                <form enctype="multipart/form-data"  action='/goods/add' method='post'>
                     <input type='text' name='TITLE'/>
                     <input type='text' name='DISCR'/>
                     <input type='text' name='PRICE'/>
