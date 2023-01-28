@@ -9,11 +9,12 @@ const fileFromForm = uploadFromForm.single('MYFILE')
 module.exports = (app) => {
     /**
      * Маршрут для редактирования оного товара:
-     * Автор: Румянцев Александр
+     * Автор: Резникова Виктория
      * Описание: Возвращает JSON с полями, которые описывают успешное редактирования товара в БД 
      * Версия: v1
      * Метод: POST
      * Пример работы с запросом:
+     * Ввести в адресную строку - http://localhost:3000/goods/edit
     */
     
     app.post('/goods/edit', fileFromForm, function(req, res){

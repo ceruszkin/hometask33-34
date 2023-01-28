@@ -10,12 +10,13 @@ const fileFromForm = uploadFromForm.single('MYFILE')
 module.exports = (app) => {
 
     /**
-     * Маршрут для добавления оного пользователя:
-     * Автор: Румянцев Александр
+     * Маршрут для получения одного отзыва:
+     * Автор: Резникова Виктория
      * Описание: Возвращает JSON с полями, которые описывают успешное редактирование пользователя в БД 
      * Версия: v1
      * Метод: POST
      * Пример работы с запросом:
+     * Ввести в адресную строку - http://localhost:3000/reviews/edit
      */
      app.post('/reviews/edit', fileFromForm, function(req, res){
 
@@ -33,18 +34,18 @@ module.exports = (app) => {
 
     /**
      * Вспомогательный маршрут для редактирования пользователя в БД
-     * Автор: Румянцев Александр
+     * Автор: Резникова Виктория
      * Описание: Выводить форму на интерфейс для редактирования пользователя 
      * Версия: v1
      * Метод: GET
      * Пример работы с запросом: 
-     * Ввести в адресную строку - http://localhost:3000/form_edit_user
+     * Ввести в адресную строку - http://localhost:3000/reviews/form/edit
      */
      app.get('/reviews/form/edit', function(req, res){
         res.send(
             `
                 <h1>
-                    Тестовая форма, для маршрута - edit_user
+                    Тестовая форма, для маршрута - edit_review
                 </h1>
                 <form enctype="multipart/form-data" action='/reviews/edit' method='post'>
                     <input placeholder='ID' type='text' name='ID'/>

@@ -11,12 +11,13 @@ const uuid = require("uuid")
 module.exports = (app) => {
 
     /**
-     * Маршрут для добавления отзыва:
+     * Маршрут для получения одного отзыва:
      * Автор: Резникова Виктория
      * Описание: Возвращает JSON с полями, которые описывают успешное добавление пользователя в БД 
      * Версия: v1
      * Метод: POST
      * Пример работы с запросом:
+     * Ввести в адресную строку - http://localhost:3000/reviews/add
      */
      app.post('/reviews/add', fileFromForm, function(req, res){
 
@@ -33,19 +34,19 @@ module.exports = (app) => {
      })
 
     /**
-     * Вспомогательный маршрут для добавления пользователя в БД
-     * Автор: Румянцев Александр
+     * Вспомогательный маршрут для добавления отзыва в БД
+     * Автор: Резникова Виктория
      * Описание: Выводить форму на интерфейс для добавления пользователя 
      * Версия: v1
      * Метод: GET
      * Пример работы с запросом: 
-     * Ввести в адресную строку - http://localhost:3000/form_add_user
+     * Ввести в адресную строку - http://localhost:3000/reviews/form/add
      */
      app.get('/reviews/form/add', function(req, res){
         res.send(
             `
                 <h1>
-                    Тестовая форма, для маршрута - add_user
+                    Тестовая форма, для маршрута - add_review
                 </h1>
                 <form enctype="multipart/form-data" action='/reviews/add' method='post'>
                     <input placeholder='NAME' type='text' name='NAME'/>

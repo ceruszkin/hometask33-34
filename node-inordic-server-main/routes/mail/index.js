@@ -15,7 +15,9 @@ module.exports = (app)=> {
      * Метод: POST
      */
     app.post('/mail/send', fileFromForm, function(req, res){
-        
+
+        const messageToManager = req.body.TEXT
+
         const workerForMail = new WorkerForMail(res, req)
         // Применим функию send, для отправки письма, передаем в него сообщение с формы
         workerForMail.sendMail(messageToManager)
@@ -24,7 +26,7 @@ module.exports = (app)=> {
 
     /**
      * Вспомогательный маршрут с формой для отправки сообщения админимтратору интренет-магазина
-     * Автор: Румянцев Александр
+     * Автор: Резникова Виктория
      * Описание: Возвращает html форму
      * Версия: v1
      * Метод: GET
