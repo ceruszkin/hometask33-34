@@ -7,7 +7,7 @@
  * Пример работы с запросом:
  * Ввести в адресную строку - http://localhost:3000/get_item?id=1
  */
-module.exports = (app, connect) => app.get('/get_item', function(req, res){
+module.exports = (app, connect) => app.get('/goods/get/:id', function(req, res){
     //Получаем поле id из объекта request
     const {id} = req.query
     //Сформировать запрос на получение одного товара

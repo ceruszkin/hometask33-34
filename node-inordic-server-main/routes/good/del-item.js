@@ -7,7 +7,7 @@
  * Пример работы с запросом:
  * Ввести в адресную строку - http://localhost:3000/del_item?id=1
  */
- module.exports = (app, connect) => app.get('/del_item', function(req, res){
+ module.exports = (app, connect) => app.get('/goods/delete/:id', function(req, res){
     //Получаем поле id из объекта request
     const {id} = req.query
 

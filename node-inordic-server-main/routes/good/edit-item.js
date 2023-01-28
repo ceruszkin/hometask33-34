@@ -14,7 +14,7 @@ module.exports = (app, connect) => {
      * Метод: POST
      * Пример работы с запросом:
     */
-    app.post('/edit_item', fileFromForm, function(req, res){
+    app.post('/goods/edit', fileFromForm, function(req, res){
         //Тут не можем чистать данных с формы без дополнительных плагинов
         console.log(req)
         console.log(req)
@@ -46,7 +46,7 @@ module.exports = (app, connect) => {
                 <h1>
                 Тестовая форма, для маршрута - edit_item
                 </h1>
-                <form enctype="multipart/form-data"  action='/edit_item' method='post'>
+                <form enctype="multipart/form-data"  action='/goods/edit' method='post'>
                     <input type='text' name='ID'/>
                     <input type='text' name='TITLE'/>
                     <input type='text' name='DISCR'/>

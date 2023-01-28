@@ -44,17 +44,17 @@ app.get(
                 </h2>
                 <ul> 
                     <li>
-                        <a href='/goods/add'>
-                            1 - Маршрут для получения всех товаров.
+                        <a href='/goods/get/:id'>
+                            1 - Маршрут для получения одного товара.
                         </a>
                     </li>
                     <li>
-                        <a href='/get_item?id=1'>
+                        <a href='/goods/get'>
                             2 - Маршрут для получения всех товаров.
                         </a>
                     </li>
                     <li>
-                        <a href='/del_item?id=1'>
+                        <a href='/goods/del/:id'>
                             3 - Маршрут для удаления товара.
                         </a>
                     </li>

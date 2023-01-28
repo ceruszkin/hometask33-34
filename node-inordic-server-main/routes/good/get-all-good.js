@@ -7,7 +7,7 @@
  * Пример работы с запросом:
  * Ввести в адресную строку - http://localhost:3000/get_all_good
  */
- module.exports = (app, connect) => app.get('/get_all_good', function(request, response){
+ module.exports = (app, connect) => app.get('/goods/get', function(request, response){
     
     //Составим запрос для базы данных
     // SELECT - выборка (получить), ключевое слово
