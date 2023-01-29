@@ -89,7 +89,7 @@ app.get(
                         </a>
                     </li>
                     <li>
-                        <a href='/users/del/:id'>
+                        <a href='/users/form/del'>
                             5 - Маршрут для удаления пользователя.
                         </a>
                     </li>
