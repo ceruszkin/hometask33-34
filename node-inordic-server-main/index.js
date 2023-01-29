@@ -89,7 +89,7 @@ app.get(
                         </a>
                     </li>
                     <li>
-                        <a href='/users/form/del'>
+                        <a href='/users/del/:id'>
                             5 - Маршрут для удаления пользователя.
                         </a>
                     </li>
@@ -151,12 +151,14 @@ require('./routes/user/add-user.js')(app)
 require('./routes/user/get-all-users')(app)
 require('./routes/user/get-user')(app)
 require('./routes/user/edit-user')(app)
+require('./routes/user/del-user.js')(app)
 
 //Роуты для отзывов
 require('./routes/review/get-all-reviews')(app)
 require('./routes/review/get-review')(app)
 require('./routes/review/add-review')(app)
 require('./routes/review/edit-review')(app)
+require('./routes/review/del-review')(app)
 
 //Роуты для писем
 require('./routes/mail')(app)
