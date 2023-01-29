@@ -13,7 +13,6 @@ const WorkerReviews = require('../../services/worker-reviews/index')
 module.exports = (app) => {
 
     app.get('/reviews/get', function(req, res){
-        console.log(WorkerReviews)
         //Создадим экземпляр вспомогательного класса WorkerTableUser.
         const workerReviews = new WorkerReviews(res, req)
         workerReviews.getAll();
